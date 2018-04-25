@@ -6,6 +6,7 @@ works for now, and is pretty simple.
 
 
 Editing:
+
 - skeleton.xml is the primary skeleton to start with, for *.xhtml
   files in ~/homepage/src/.
 

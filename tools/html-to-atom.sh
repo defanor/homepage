@@ -11,7 +11,7 @@ ATOM="${BASEDIR}/atom.xml"
      echo '<list>' &&
      find "${BASEDIR}" -name '*.xhtml' |
          grep -Ev "^(${TOOLS}|${SOURCES}).*" |
-         sed -e "sS^${BASEDIR}\(.*\)S<entry name=\"\\1\" />S" &&
+         sed -e "sS^${BASEDIR}/\(.*\)S<entry name=\"\\1\" />S" &&
      echo '</list>') |
     xsltproc "${TOOLS}/html-to-atom-dump.xsl" - |
     xsltproc "${TOOLS}/atom-sort.xsl" - |
