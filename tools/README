@@ -1,0 +1,38 @@
+These are the tools I use for my personal web page authoring.
+
+The scripts can be improved to process just the modified files (and to
+be less hacky in general), the XSLTs can be made more generic, but it
+works for now, and is pretty simple.
+
+
+Editing:
+- skeleton.xml is the primary skeleton to start with, for *.xhtml
+  files in ~/homepage/src/.
+
+This stage is mostly needed to get unified styles, metadata
+properties, and other bits in case if I'll change them. The same can
+be achieved by processing (X)HTML files, but such a processing may get
+tricky, and it's also nicer to have a less verbose skeleton.
+
+Editing is done with the emacs html-mode, with
+<https://github.com/defanor/html-wysiwyg>.
+
+
+HTML:
+
+- xml-to-html.sh translates source files into actual (X)HTML in
+  ~/homepage/ by applying xml-to-html.xsl to them.
+
+
+Atom feed:
+
+- html-to-atom-dump.xsl dumps HTML files into a single atom feed.
+- atom-sort.xsl sorts those by modification date.
+- atom-limit.xsl limits them, taking the newest entries.
+- html-to-atom.sh finds source files, and pipes them through the
+  XSLTs.
+
+
+Publishing:
+
+- publish.sh runs the above two and uploads the files with rsync.
