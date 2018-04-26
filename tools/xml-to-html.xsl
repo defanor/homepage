@@ -23,62 +23,57 @@
                   home: https://defanor.uberspace.net/"
           typeof="dc:Text schema:Article foaf:Document">
       <head>
-        <xsl:apply-templates select="meta" />
+        <!-- Only title is required -->
+        <title property="dc:title schema:name foaf:name">
+          <xsl:value-of select="@title" />
+        </title>
+        <xsl:if test="@description">
+          <meta name="description"
+                property="dc:description schema:description"
+                content="{@description}" />
+        </xsl:if>
+        <xsl:if test="@keywords">
+          <meta name="keywords"
+                property="schema:keywords"
+                content="{@keywords}" />
+        </xsl:if>
+        <xsl:if test="@created">
+          <meta property="dc:created schema:dateCreated"
+                datatype="schema:Date"
+                content="{@created}" />
+        </xsl:if>
+        <xsl:if test="@published">
+          <meta property="dc:issued schema:datePublished"
+                datatype="schema:Date"
+                content="{@published}" />
+        </xsl:if>
+        <xsl:if test="@modified">
+          <meta property="dc:modified schema:dateModified"
+                datatype="schema:Date"
+                content="{@modified}" />
+        </xsl:if>
+        <xsl:if test="@primaryTopic">
+          <link property="dc:subject schema:about foaf:primaryTopic"
+                href="{@primaryTopic}" />
+        </xsl:if>
+
+        <xsl:apply-templates select="topic" />
+
+        <!-- The rest is fixed metadata -->
+        <link property="dc:creator schema:creator foaf:maker"
+              href="/foaf.rdf#me" />
+        <link property="dc:isPartOf schema:isPartOf"
+              href="https://defanor.uberspace.net/" />
+        <link rel="stylesheet" title="Dark, blueish"
+              href="/xhtml-rdfa-dark.css" />
+        <link rel="alternate stylesheet" title="No colourisation"
+              href="/xhtml-rdfa.css" />
+        <link rel="alternate stylesheet" title="Light, beige"
+              href="/xhtml-rdfa-light.css" />
+        <meta name="robots" content="noarchive" />
       </head>
       <xsl:copy-of select="xhtml:body" />
     </html>
-  </xsl:template>
-
-  <!-- Metadata -->
-  <xsl:template match="meta">
-    <!-- Only title is required -->
-    <title property="dc:title schema:name foaf:name">
-      <xsl:value-of select="@title" />
-    </title>
-    <xsl:if test="@description">
-      <meta name="description"
-            property="dc:description schema:description"
-            content="{@description}" />
-    </xsl:if>
-    <xsl:if test="@keywords">
-      <meta name="keywords"
-            property="schema:keywords"
-            content="{@keywords}" />
-    </xsl:if>
-    <xsl:if test="@created">
-      <meta property="dc:created schema:dateCreated"
-            datatype="schema:Date"
-            content="{@created}" />
-    </xsl:if>
-    <xsl:if test="@published">
-      <meta property="dc:issued schema:datePublished"
-            datatype="schema:Date"
-            content="{@published}" />
-    </xsl:if>
-    <xsl:if test="@modified">
-      <meta property="dc:modified schema:dateModified"
-            datatype="schema:Date"
-            content="{@modified}" />
-    </xsl:if>
-    <xsl:if test="@primaryTopic">
-      <link property="dc:subject schema:about foaf:primaryTopic"
-            href="{@primaryTopic}" />
-    </xsl:if>
-
-    <xsl:apply-templates select="topic" />
-
-    <!-- The rest is fixed metadata -->
-    <link property="dc:creator schema:creator foaf:maker"
-          href="/foaf.rdf#me" />
-    <link property="dc:isPartOf schema:isPartOf"
-          href="https://defanor.uberspace.net/" />
-    <link rel="stylesheet" title="Dark, blueish"
-          href="/xhtml-rdfa-dark.css" />
-    <link rel="alternate stylesheet" title="No colourisation"
-          href="/xhtml-rdfa.css" />
-    <link rel="alternate stylesheet" title="Light, beige"
-          href="/xhtml-rdfa-light.css" />
-    <meta name="robots" content="noarchive" />
   </xsl:template>
 
   <!-- Additional topics -->
@@ -86,5 +81,5 @@
     <link property="dc:subject schema:about foaf:topic"
           href="{@iri}" />
   </xsl:template>
-  
+
 </xsl:stylesheet>

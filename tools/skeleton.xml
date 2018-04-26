@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document>
-  <meta title=""
-        description=""
-        keywords=""
-        created=""
-        published=""
-        modified=""
-        primaryTopic="">
-    <topic iri="" />
-  </meta>
+<document title=""
+          description=""
+          keywords=""
+          created=""
+          published=""
+          modified=""
+          primaryTopic="">
+  <topic iri="" />
   <body xmlns="http://www.w3.org/1999/xhtml">
     
   </body>
