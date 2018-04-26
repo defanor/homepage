@@ -57,7 +57,12 @@
                 href="{@primaryTopic}" />
         </xsl:if>
 
+        <!-- Additional topics -->
         <xsl:apply-templates select="topic" />
+
+        <!-- Additional raw meta and links -->
+        <xsl:apply-templates select="xhtml:meta" />
+        <xsl:apply-templates select="xhtml:link" />
 
         <!-- The rest is fixed metadata -->
         <link property="dc:creator schema:creator foaf:maker"
@@ -80,6 +85,11 @@
   <xsl:template match="topic">
     <link property="dc:subject schema:about foaf:topic"
           href="{@iri}" />
+  </xsl:template>
+
+  <!-- Additional raw meta and link elements -->
+  <xsl:template match="xhtml:meta | xhtml:link">
+    <xsl:copy-of select="." />
   </xsl:template>
 
 </xsl:stylesheet>
