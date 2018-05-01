@@ -97,13 +97,17 @@
     <xsl:variable name="number" select="@number" />
     <dl>
       <xsl:apply-templates mode="note-index"
-                           select="$notes/notes/note[$number=0 or position()&lt;=$number]" />
+                           select="$notes/notes/note[$number=0 or position()&lt;=$number]">
+         <xsl:with-param name="prefix"
+                         select="@prefix" />
+      </xsl:apply-templates>
     </dl>
   </xsl:template>
 
   <xsl:template mode="note-index" match="note">
+    <xsl:param name="prefix" />
     <dt>
-      <a href="{@src}">
+      <a href="{$prefix}/{@src}">
         <xsl:value-of select="document/@title" />
       </a>
     </dt>
