@@ -11,9 +11,9 @@ NOTES="${BASEDIR}/notes"
 # dump all the notes into a single file
 (echo '<?xml version="1.0" encoding="UTF-8"?>' &&
      echo '<notes>' &&
-     find "${NOTES}" -name '*.xhtml' |
+     find "${SOURCES}" -name '*.xhtml' |
          grep -v index.xhtml |
-         sed -e "sS^${BASEDIR}/\(.*\)S  <note src=\"\\1\" />S" &&
+         sed -e "sS^${SOURCES}/\(.*\)S  <note src=\"\\1\" />S" &&
      echo '</notes>') |
     xsltproc -o "${BUILD}/notes-dump.xml" "${TOOLS}/xml-notes-dump.xsl" -
 
