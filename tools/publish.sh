@@ -12,6 +12,7 @@ NOTES="${BASEDIR}/notes"
 (echo '<?xml version="1.0" encoding="UTF-8"?>' &&
      echo '<notes>' &&
      find "${NOTES}" -name '*.xhtml' |
+         grep -v index.xhtml |
          sed -e "sS^${BASEDIR}/\(.*\)S  <note src=\"\\1\" />S" &&
      echo '</notes>') |
     xsltproc -o "${BUILD}/notes-dump.xml" "${TOOLS}/xml-notes-dump.xsl" -
