@@ -66,7 +66,7 @@
 
         <!-- The rest is fixed metadata -->
         <link property="dc:creator schema:creator foaf:maker"
-              href="/foaf.rdf#me" />
+              href="https://defanor.uberspace.net/about.xhtml#me" />
         <link property="dc:isPartOf schema:isPartOf"
               href="https://defanor.uberspace.net/" />
         <link rel="stylesheet" title="Dark, blueish"
