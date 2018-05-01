@@ -7,8 +7,8 @@ works for now, and is pretty simple.
 
 Editing:
 
-- skeleton.xml is the primary skeleton to start with, for *.xhtml
-  files in ~/homepage/src/.
+- skeleton.xml is the primary skeleton to start with, for *.xhtml files
+  in ~/homepage/src/.
 
 This stage is mostly needed to get unified styles, metadata
 properties, and other bits in case if I'll change them. The same can
@@ -19,21 +19,30 @@ Editing is done with the emacs html-mode, with
 <https://github.com/defanor/html-wysiwyg>.
 
 
+Indexing:
+
+- xml-notes-dump.xsl (with some help from publish.sh) is used to
+  create notes-dump.xml in the build directory.
+- xml-notes-sort.xsl sorts that to create
+  notes-by-publication-date.xml and notes-by-modification-date.xml.
+- xml-notes-limit.xsl is used to extract the most recent notes.
+
+
 HTML:
 
-- xml-to-html.sh translates source files into actual (X)HTML in
-  ~/homepage/ by applying xml-to-html.xsl to them.
+- xml-to-html.xsl is used to translate source files into actual (X)HTML
+  in ~/homepage/.
+
+Indexes can be included into those using the <notes> element (so it
+should run after those are built, if they are used).
 
 
 Atom feed:
 
-- html-to-atom-dump.xsl dumps HTML files into a single atom feed.
-- atom-sort.xsl sorts those by modification date.
-- atom-limit.xsl limits them, taking the newest entries.
-- html-to-atom.sh finds source files, and pipes them through the
-  XSLTs.
+- xml-notes-to-atom.xsl translates a dump of notes (such as
+  notes-by-modification-date.xml) into an atom feed.
 
 
 Publishing:
 
-- publish.sh runs the above two and uploads the files with rsync.
+- publish.sh runs all of the above and uploads the files with rsync.

@@ -77,7 +77,7 @@
               href="/xhtml-rdfa-light.css" />
         <meta name="robots" content="noarchive" />
       </head>
-      <xsl:copy-of select="xhtml:body" />
+      <xsl:apply-templates mode="body" select="xhtml:body" />
     </html>
   </xsl:template>
 
@@ -90,6 +90,33 @@
   <!-- Additional raw meta and link elements -->
   <xsl:template match="xhtml:meta | xhtml:link">
     <xsl:copy-of select="." />
+  </xsl:template>
+
+  <xsl:template mode="body" match="notes">
+    <xsl:variable name="notes" select="document(@src)" />
+    <xsl:variable name="number" select="@number" />
+    <dl>
+      <xsl:apply-templates mode="note-index"
+                           select="$notes/notes/note[$number=0 or position()&lt;=$number]" />
+    </dl>
+  </xsl:template>
+
+  <xsl:template mode="note-index" match="note">
+    <dt>
+      <a href="{@src}">
+        <xsl:value-of select="document/@title" />
+      </a>
+    </dt>
+    <dd>
+      <xsl:value-of select="document/@description" />
+    </dd>
+  </xsl:template>
+
+  <xsl:template mode="body" match="node()" priority="0">
+    <xsl:copy>
+      <xsl:copy-of select="@*" />
+      <xsl:apply-templates mode="body" />
+    </xsl:copy>
   </xsl:template>
 
 </xsl:stylesheet>
