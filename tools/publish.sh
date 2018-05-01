@@ -5,13 +5,13 @@ TOOLS="${BASEDIR}/tools"
 BUILD="${BASEDIR}/build"
 ATOM="${BASEDIR}/atom.xml"
 SOURCES="${BASEDIR}/src"
-NOTES="${BASEDIR}/notes"
+NOTES="${SOURCES}/notes"
 
 
 # dump all the notes into a single file
 (echo '<?xml version="1.0" encoding="UTF-8"?>' &&
      echo '<notes>' &&
-     find "${SOURCES}" -name '*.xhtml' |
+     find "${NOTES}" -name '*.xhtml' |
          grep -v index.xhtml |
          sed -e "sS^${SOURCES}/\(.*\)S  <note src=\"\\1\" />S" &&
      echo '</notes>') |
