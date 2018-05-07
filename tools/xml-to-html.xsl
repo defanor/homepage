@@ -20,11 +20,12 @@
                   schema: http://schema.org/
                   foaf: http://xmlns.com/foaf/0.1/
                   dbr: http://dbpedia.org/resource/
+                  sioc: http://rdfs.org/sioc/ns#
                   home: https://defanor.uberspace.net/"
-          typeof="dc:Text schema:Article foaf:Document">
+          typeof="dc:Text schema:Article foaf:Document sioc:Post">
       <head>
         <!-- Only title is required -->
-        <title property="dc:title schema:name foaf:name">
+        <title property="dc:title schema:name foaf:name sioc:name">
           <xsl:value-of select="@title" />
         </title>
         <xsl:if test="@description">
@@ -48,7 +49,7 @@
                 content="{@published}" />
         </xsl:if>
         <xsl:if test="@modified">
-          <meta property="dc:modified schema:dateModified"
+          <meta property="dc:modified schema:dateModified sioc:last_activity_date"
                 datatype="schema:Date"
                 content="{@modified}" />
         </xsl:if>
@@ -65,9 +66,9 @@
         <xsl:apply-templates select="xhtml:link" />
 
         <!-- The rest is fixed metadata -->
-        <link property="dc:creator schema:creator foaf:maker"
+        <link property="dc:creator schema:creator foaf:maker sioc:has_creator"
               href="https://defanor.uberspace.net/about.xhtml#me" />
-        <link property="dc:isPartOf schema:isPartOf"
+        <link property="dc:isPartOf schema:isPartOf sioc:has_container"
               href="https://defanor.uberspace.net/" />
         <link rel="stylesheet" title="Dark, blueish"
               href="/xhtml-rdfa-dark.css" />
@@ -83,7 +84,7 @@
 
   <!-- Additional topics -->
   <xsl:template match="topic">
-    <link property="dc:subject schema:about foaf:topic"
+    <link property="dc:subject schema:about foaf:topic sioc:topic"
           href="{@iri}" />
   </xsl:template>
 
