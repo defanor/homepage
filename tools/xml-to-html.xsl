@@ -14,13 +14,11 @@
     <xsl:text disable-output-escaping='yes'>
       &lt;!DOCTYPE html&gt;
     </xsl:text>
+    <!-- Some of the prefixes are omitted, since they should be
+         available by default:
+         https://www.w3.org/2011/rdfa-context/rdfa-1.1 -->
     <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"
-          prefix="dc: http://purl.org/dc/terms/
-                  rdfs: http://www.w3.org/1999/02/22-rdf-syntax-ns#
-                  schema: http://schema.org/
-                  foaf: http://xmlns.com/foaf/0.1/
-                  dbr: http://dbpedia.org/resource/
-                  sioc: http://rdfs.org/sioc/ns#
+          prefix="dbr: http://dbpedia.org/resource/
                   home: https://defanor.uberspace.net/"
           typeof="dc:Text schema:Article foaf:Document sioc:Post">
       <head>
