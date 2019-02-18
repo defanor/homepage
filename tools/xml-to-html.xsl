@@ -76,7 +76,16 @@
               href="/xhtml-rdfa-light.css" />
         <meta name="robots" content="noarchive" />
       </head>
-      <xsl:apply-templates mode="body" select="xhtml:body" />
+      <body>
+        <xsl:apply-templates mode="body" select="xhtml:body/*" />
+        <footer>
+          <xsl:if test="not(//notes)">
+            <a href="https://defanor.uberspace.net/">defanor</a>,
+            <time><xsl:copy-of select="substring(@created,0,8)" /></time>
+            <xsl:if test="substring(@created,0,8) != substring(@modified,0,8)">–<time><xsl:copy-of select="substring(@modified,0,8)" /></time></xsl:if>
+          </xsl:if>
+        </footer>
+      </body>
     </html>
   </xsl:template>
 
@@ -112,6 +121,8 @@
     </dt>
     <dd>
       <xsl:value-of select="document/@description" />
+      (<time><xsl:copy-of select="substring(document/@created,0,8)" /></time>
+      <xsl:if test="substring(document/@created,0,8) != substring(document/@modified,0,8)">–<time><xsl:copy-of select="substring(document/@modified,0,8)" /></time></xsl:if>)
     </dd>
   </xsl:template>
 
