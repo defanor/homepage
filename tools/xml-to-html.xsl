@@ -68,11 +68,11 @@
               href="https://defanor.uberspace.net/about.xhtml#me" />
         <link property="dc:isPartOf schema:isPartOf sioc:has_container"
               href="https://defanor.uberspace.net/" />
-        <link rel="stylesheet" title="Dark, blueish"
+        <link rel="stylesheet" title="Dark"
               href="/xhtml-rdfa-dark.css" />
-        <link rel="alternate stylesheet" title="No colourisation"
+        <link rel="alternate stylesheet" title="Default colors"
               href="/xhtml-rdfa.css" />
-        <link rel="alternate stylesheet" title="Light, beige"
+        <link rel="alternate stylesheet" title="Light"
               href="/xhtml-rdfa-light.css" />
         <meta name="robots" content="noarchive" />
       </head>
