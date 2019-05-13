@@ -70,10 +70,6 @@
               href="https://defanor.uberspace.net/" />
         <link rel="stylesheet" title="Dark"
               href="/xhtml-rdfa-dark.css" />
-        <link rel="alternate stylesheet" title="Default colors"
-              href="/xhtml-rdfa.css" />
-        <link rel="alternate stylesheet" title="Light"
-              href="/xhtml-rdfa-light.css" />
         <meta name="robots" content="noarchive" />
       </head>
       <body>
