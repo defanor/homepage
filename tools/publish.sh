@@ -3,7 +3,7 @@
 BASEDIR=~/homepage
 TOOLS="${BASEDIR}/tools"
 BUILD="${BASEDIR}/build"
-ATOM="${BASEDIR}/atom.xml"
+ATOM="${BASEDIR}/notes/atom.xml"
 SOURCES="${BASEDIR}/src"
 NOTES="${SOURCES}/notes"
 

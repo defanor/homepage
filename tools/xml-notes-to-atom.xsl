@@ -13,11 +13,9 @@
   <xsl:template match="notes">
     <feed>
       <title>defanor's notes</title>
-      <link rel="self" href="{$baseIRI}atom.xml" />
-      <link rel="alternate" href="{$baseIRI}" />
-      <id>
-        <xsl:value-of select="$baseIRI" />
-      </id>
+      <link rel="self" href="{$baseIRI}notes/atom.xml" />
+      <link rel="alternate" href="{$baseIRI}notes/" />
+      <id><xsl:value-of select="$baseIRI" />notes/</id>
       <!--
           Setting <updated> statically, since it applies to some
           meaningful feed updates. Perhaps should be modified on
