@@ -68,8 +68,13 @@
               href="https://defanor.uberspace.net/about.xhtml#me" />
         <link property="dc:isPartOf schema:isPartOf sioc:has_container"
               href="https://defanor.uberspace.net/" />
-        <link rel="stylesheet" title="Dark"
-              href="/xhtml-rdfa-dark.css" />
+        <style>
+          body { max-width: 86ch; margin: auto; padding: 0ch 1ch 1ch 1ch;
+          background: #061014; color: #c0d0d6; }
+          img { max-width: 84ch; }
+          a { color: #60b0a0; }
+          a:visited { color: #60a0b0; }
+        </style>
         <meta name="robots" content="noarchive" />
       </head>
       <body>
