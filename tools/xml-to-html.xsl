@@ -2,7 +2,9 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                xmlns:str="http://exslt.org/strings"
                 xmlns="http://www.w3.org/1999/xhtml"
+                extension-element-prefixes="str"
                 version="1.0">
   <xsl:output method="xml" indent="yes"/>
 
@@ -125,6 +127,16 @@
       (<time><xsl:copy-of select="substring(document/@created,0,8)" /></time>
       <xsl:if test="substring(document/@created,0,8) != substring(document/@modified,0,8)">–<time><xsl:copy-of select="substring(document/@modified,0,8)" /></time></xsl:if>)
     </dd>
+  </xsl:template>
+
+  <xsl:template mode="body" match="xhtml:h1|xhtml:h2|xhtml:h3|xhtml:h4|xhtml:h5">
+    <xsl:copy>
+      <xsl:attribute name="id">
+        <xsl:value-of select="str:replace(text(),' ','_')"/>
+      </xsl:attribute>
+      <xsl:copy-of select="@*" />
+      <xsl:apply-templates mode="body" />
+    </xsl:copy>
   </xsl:template>
 
   <xsl:template mode="body" match="node()" priority="0">
