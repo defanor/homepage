@@ -82,7 +82,7 @@
       <body>
         <xsl:apply-templates mode="body" select="xhtml:body/*" />
         <footer>
-          <xsl:if test="not(//notes)">
+          <xsl:if test="not(//notes) and @created and @modified">
             <a href="https://defanor.uberspace.net/">defanor</a>,
             <time><xsl:copy-of select="substring(@created,0,8)" /></time>
             <xsl:if test="substring(@created,0,8) != substring(@modified,0,8)"> to <time><xsl:copy-of select="substring(@modified,0,8)" /></time></xsl:if>
