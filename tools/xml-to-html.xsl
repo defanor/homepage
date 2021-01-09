@@ -73,6 +73,7 @@
         <meta name="robots" content="noarchive" />
       </head>
       <body>
+        <xsl:apply-templates mode="body" select="xhtml:body/@*" />
         <xsl:apply-templates mode="body" select="xhtml:body/*" />
         <footer>
           <xsl:if test="not(//notes) and @created and @modified">
@@ -132,7 +133,7 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template mode="body" match="node()" priority="0">
+  <xsl:template mode="body" match="@* | node()" priority="0">
     <xsl:copy>
       <xsl:copy-of select="@*" />
       <xsl:apply-templates mode="body" />

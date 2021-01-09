@@ -38,4 +38,4 @@ find "${SOURCES}" -name '*.xhtml' |
 # upload
 rsync --exclude '.*' --exclude '*.org' --exclude 'src/' \
       --exclude 'tools/' --exclude 'build/' \
-      -avz . uberspace.net:homepage/web/
+      -avz . tart.uberspace.net:public_html/
