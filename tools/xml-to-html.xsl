@@ -119,7 +119,11 @@
     <dd>
       <xsl:value-of select="document/@description" />
       (<time><xsl:copy-of select="substring(document/@created,0,8)" /></time>
-      <xsl:if test="substring(document/@created,0,8) != substring(document/@modified,0,8)"> to <time><xsl:copy-of select="substring(document/@modified,0,8)" /></time></xsl:if>)
+      <xsl:if test="substring(document/@created,0,8) != substring(document/@modified,0,8)"> to <time><xsl:copy-of select="substring(document/@modified,0,8)" /></time></xsl:if>,
+      <xsl:value-of select=
+                    "string-length(normalize-space(document)) -
+                     string-length(translate(normalize-space(document), ' ', '')) +
+                     1" /> words)
     </dd>
   </xsl:template>
 
