@@ -68,6 +68,8 @@
         <!-- The rest is fixed metadata -->
         <link property="dc:creator schema:creator foaf:maker sioc:has_creator"
               href="https://defanor.uberspace.net/about.xhtml#me" />
+        <link property="dc:license schema:license"
+              href="https://creativecommons.org/licenses/by-sa/4.0/" />
         <link property="dc:isPartOf schema:isPartOf sioc:has_container"
               href="https://defanor.uberspace.net/" />
         <meta name="robots" content="noarchive" />
@@ -78,6 +80,7 @@
         <footer>
           <xsl:if test="not(//notes) and @created and @modified">
             <a href="https://defanor.uberspace.net/">defanor</a>,
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>,
             <time><xsl:copy-of select="substring(@created,0,8)" /></time>
             <xsl:if test="substring(@created,0,8) != substring(@modified,0,8)"> to <time><xsl:copy-of select="substring(@modified,0,8)" /></time></xsl:if>
           </xsl:if>
