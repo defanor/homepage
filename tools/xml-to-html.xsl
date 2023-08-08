@@ -140,7 +140,7 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template mode="body" match="@* | node()" priority="0">
+  <xsl:template mode="body" match="@* | node()" priority="-1">
     <xsl:copy>
       <xsl:copy-of select="@*" />
       <xsl:apply-templates mode="body" />

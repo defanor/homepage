@@ -61,7 +61,7 @@
     </entry>
   </xsl:template>
 
-  <xsl:template match="node()" priority="0">
+  <xsl:template match="node()" priority="-1">
     <xsl:copy>
       <xsl:copy-of select="@*" />
       <xsl:apply-templates />
