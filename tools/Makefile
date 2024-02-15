@@ -1,8 +1,8 @@
 all: $(patsubst src/%,%,$(wildcard src/notes/*.xhtml src/*.xhtml)) \
-	notes/atom.xml
+	notes/atom.xml blog/index.xhtml blog/gophermap
 
 # Index page
-index.xhtml: src/index.xhtml build/notes-by-modification-date.xml tools/xml-to-html.xsl
+index.xhtml: src/index.xhtml build/notes-by-modification-date.xml build/blog.xml tools/xml-to-html.xsl
 	xsltproc -o $@ tools/xml-to-html.xsl $<
 
 # Note index page
@@ -16,6 +16,27 @@ notes/%.xhtml: src/notes/%.xhtml tools/xml-to-html.xsl
 # Other static pages
 %.xhtml: src/%.xhtml tools/xml-to-html.xsl
 	xsltproc -o $@ tools/xml-to-html.xsl $<
+
+# Blog and phlog indexes. Assuming that the blog post file names are
+# prefixed with dates in a format that makes sense to sort in the
+# lexiographic order.
+blog/index.xhtml: src/blog/index.xhtml build/blog.xml tools/xml-to-html.xsl
+	xsltproc -o $@ tools/xml-to-html.xsl $<
+
+build/blog.xml: blog/*.txt
+	(echo '<?xml version="1.0" encoding="UTF-8"?>' && \
+		echo '<files>' && \
+		ls -r blog/*.txt | \
+		sed -e "sS^blog/\(.*\)S  <file src=\"\\1\" />S" && \
+		echo '</files>') \
+	> build/blog.xml
+
+blog/gophermap: blog/*.txt
+	(echo "!defanor's phlog" && \
+	ls -r blog/*.txt | \
+	sed -e "sS^blog/\(.*\)S0\\1\t\\1S" && \
+	echo '.') \
+	> $@
 
 # A single-file dump of all notes
 build/notes-dump.xml: src/notes/*.xhtml tools/xml-notes-dump.xsl

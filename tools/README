@@ -21,11 +21,13 @@ Editing is done with the emacs html-mode, with
 
 Indexing:
 
-- xml-notes-dump.xsl (with some help from publish.sh) is used to
+- xml-notes-dump.xsl (with some help from Makefile) is used to
   create notes-dump.xml in the build directory.
 - xml-notes-sort.xsl sorts that to create
   notes-by-publication-date.xml and notes-by-modification-date.xml.
 - xml-notes-limit.xsl is used to extract the most recent notes.
+
+Opaque files can be indexed externally, as done with build/blog.xml.
 
 
 HTML:
@@ -33,8 +35,8 @@ HTML:
 - xml-to-html.xsl is used to translate source files into actual (X)HTML
   in ~/homepage/.
 
-Indexes can be included into those using the <notes> element (so it
-should run after those are built, if they are used).
+Indexes can be included into those using the <notes> or <file> element
+(so it should run after those are built, if they are used).
 
 
 Atom feed:

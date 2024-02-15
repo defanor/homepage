@@ -82,19 +82,18 @@
         <xsl:apply-templates mode="body" select="xhtml:body/@*" />
         <xsl:apply-templates mode="body" select="xhtml:body/*" />
         <footer>
+          defanor, <a
+          href="https://creativecommons.org/licenses/by-sa/4.0/">CC
+          BY-SA 4.0</a>,
           <xsl:if test="not(//notes) and @created and @modified">
-            defanor, <a
-            href="https://creativecommons.org/licenses/by-sa/4.0/">CC
-            BY-SA 4.0</a>, <time><xsl:copy-of
-            select="substring(@created,0,8)" /></time> <xsl:if
-            test="substring(@created,0,8) !=
+            <time><xsl:copy-of select="substring(@created,0,8)"
+            /></time> <xsl:if test="substring(@created,0,8) !=
             substring(@modified,0,8)"> to <time><xsl:copy-of
-            select="substring(@modified,0,8)" /></time></xsl:if>, at
-            <a
+            select="substring(@modified,0,8)" /></time></xsl:if>,
+            </xsl:if>at <a
             href="https://defanor.uberspace.net/">defanor.uberspace.net</a>
             or <a
             href="https://www.thunix.net/~defanor/">thunix.net/~defanor</a>
-          </xsl:if>
         </footer>
       </body>
     </html>
@@ -139,6 +138,27 @@
                      string-length(translate(normalize-space(document), ' ', '')) +
                      1" /> words)
     </dd>
+  </xsl:template>
+
+  <xsl:template mode="body" match="files">
+    <xsl:variable name="files" select="document(@src)" />
+    <xsl:variable name="number" select="@number" />
+    <ul>
+      <xsl:apply-templates mode="file-index"
+                           select="$files/files/file[$number=0 or position()&lt;=$number]">
+         <xsl:with-param name="prefix"
+                         select="@prefix" />
+      </xsl:apply-templates>
+    </ul>
+  </xsl:template>
+
+  <xsl:template mode="file-index" match="file">
+    <xsl:param name="prefix" />
+    <li>
+      <a href="{$prefix}/{@src}">
+        <xsl:value-of select="@src" />
+      </a>
+    </li>
   </xsl:template>
 
   <xsl:template mode="body" match="xhtml:h1|xhtml:h2|xhtml:h3|xhtml:h4|xhtml:h5">
