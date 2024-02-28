@@ -1,5 +1,5 @@
 all: $(patsubst src/%,%,$(wildcard src/notes/*.xhtml src/*.xhtml)) \
-	notes/atom.xml blog/index.xhtml blog/gophermap
+	notes/atom.xml blog/index.xhtml blog/gophermap gophermap
 
 # Index page
 index.xhtml: src/index.xhtml build/notes-by-modification-date.xml build/blog.xml tools/xml-to-html.xsl
@@ -37,6 +37,9 @@ blog/gophermap: blog/*.txt
 	sed -e "sS^blog/\(.*\)S0\\1\t\\1S" && \
 	echo '.') \
 	> $@
+
+gophermap: src/gophermap.m4 blog/*.txt
+	m4 src/gophermap.m4 > $@
 
 # A single-file dump of all notes
 build/notes-dump.xml: src/notes/*.xhtml tools/xml-notes-dump.xsl
