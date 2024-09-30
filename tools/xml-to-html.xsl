@@ -6,22 +6,21 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 extension-element-prefixes="str"
                 version="1.0">
-  <xsl:output method="xml" indent="yes"/>
+  <xsl:output method="html" indent="yes"/>
 
   <xsl:template match="/">
     <xsl:apply-templates select="document" />
   </xsl:template>
 
   <xsl:template match="document">
-    <xsl:text disable-output-escaping='yes'>
-      &lt;!DOCTYPE html&gt;
-    </xsl:text>
+    <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;
+</xsl:text>
     <!-- Some of the prefixes are omitted, since they should be
          available by default:
          https://www.w3.org/2011/rdfa-context/rdfa-1.1 -->
-    <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"
+    <html lang="en" xml:lang="en"
           prefix="dbr: http://dbpedia.org/resource/
-                  home: https://defanor.uberspace.net/"
+                  home: https://thunix.net/~defanor"
           typeof="dc:Text schema:Article foaf:Document sioc:Post">
       <head>
         <!-- Only title is required -->
@@ -67,13 +66,9 @@
 
         <!-- The rest is fixed metadata -->
         <link property="dc:creator schema:creator foaf:maker sioc:has_creator"
-              href="https://defanor.uberspace.net/about.xhtml#me" />
-        <link property="dc:creator schema:creator foaf:maker sioc:has_creator"
-              href="https://www.thunix.net/~defanor/about.xhtml#me" />
+              href="https://www.thunix.net/~defanor/about.html#me" />
         <link property="dc:license schema:license"
               href="https://creativecommons.org/licenses/by-sa/4.0/" />
-        <link property="dc:isPartOf schema:isPartOf sioc:has_container"
-              href="https://defanor.uberspace.net/" />
         <link property="dc:isPartOf schema:isPartOf sioc:has_container"
               href="https://www.thunix.net/~defanor/" />
         <meta name="robots" content="noarchive" />
@@ -91,9 +86,9 @@
             substring(@modified,0,8)"> to <time><xsl:copy-of
             select="substring(@modified,0,8)" /></time></xsl:if>,
             </xsl:if>at <a
-            href="https://defanor.uberspace.net/">defanor.uberspace.net</a>
-            or <a
             href="https://www.thunix.net/~defanor/">thunix.net/~defanor</a>
+            or <a
+            href="https://steady.mooo.com/~defanor/">steady.mooo.com/~defanor</a>
         </footer>
       </body>
     </html>

@@ -1,26 +1,26 @@
-all: $(patsubst src/%,%,$(wildcard src/notes/*.xhtml src/*.xhtml)) \
-	notes/atom.xml blog/index.xhtml blog/gophermap gophermap
+all: $(patsubst src/%,%,$(wildcard src/notes/*.html src/*.html)) \
+	notes/atom.xml blog/index.html blog/gophermap gophermap
 
 # Index page
-index.xhtml: src/index.xhtml build/notes-by-modification-date.xml build/blog.xml tools/xml-to-html.xsl
+index.html: src/index.html build/notes-by-modification-date.xml build/blog.xml tools/xml-to-html.xsl
 	xsltproc -o $@ tools/xml-to-html.xsl $<
 
 # Note index page
-notes/index.xhtml: src/notes/index.xhtml build/notes-by-publication-date.xml tools/xml-to-html.xsl
+notes/index.html: src/notes/index.html build/notes-by-publication-date.xml tools/xml-to-html.xsl
 	xsltproc -o $@ tools/xml-to-html.xsl $<
 
 # Notes
-notes/%.xhtml: src/notes/%.xhtml tools/xml-to-html.xsl
+notes/%.html: src/notes/%.html tools/xml-to-html.xsl
 	xsltproc -o $@ tools/xml-to-html.xsl $<
 
 # Other static pages
-%.xhtml: src/%.xhtml tools/xml-to-html.xsl
+%.html: src/%.html tools/xml-to-html.xsl
 	xsltproc -o $@ tools/xml-to-html.xsl $<
 
 # Blog and phlog indexes. Assuming that the blog post file names are
 # prefixed with dates in a format that makes sense to sort in the
 # lexiographic order.
-blog/index.xhtml: src/blog/index.xhtml build/blog.xml tools/xml-to-html.xsl
+blog/index.html: src/blog/index.html build/blog.xml tools/xml-to-html.xsl
 	xsltproc -o $@ tools/xml-to-html.xsl $<
 
 build/blog.xml: blog/*.txt
@@ -42,11 +42,11 @@ gophermap: src/gophermap.m4 blog/*.txt
 	m4 src/gophermap.m4 > $@
 
 # A single-file dump of all notes
-build/notes-dump.xml: src/notes/*.xhtml tools/xml-notes-dump.xsl
+build/notes-dump.xml: src/notes/*.html tools/xml-notes-dump.xsl
 	(echo '<?xml version="1.0" encoding="UTF-8"?>' && \
 		echo '<notes>' && \
-		find src/notes -name '*.xhtml' | \
-		grep -v index.xhtml | \
+		find src/notes -name '*.html' | \
+		grep -v index.html | \
 		sed -e "sS^src/\(.*\)S  <note src=\"\\1\" />S" && \
 		echo '</notes>') | \
 		xsltproc -o $@ tools/xml-notes-dump.xsl -

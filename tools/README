@@ -12,7 +12,7 @@ Editing:
 
 This stage is mostly needed to get unified styles, metadata
 properties, and other bits in case if I'll change them. The same can
-be achieved by processing (X)HTML files, but such a processing may get
+be achieved by processing HTML files, but such a processing may get
 tricky, and it's also nicer to have a less verbose skeleton.
 
 Editing is done with the emacs html-mode, with

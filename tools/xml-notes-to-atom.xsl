@@ -7,7 +7,7 @@
                 version="1.0">
   <xsl:output method="xml" indent="yes"/>
   <xsl:variable name="baseIRI">
-    <xsl:text>https://defanor.uberspace.net/</xsl:text>
+    <xsl:text>https://thunix.net/~defanor/</xsl:text>
   </xsl:variable>
 
   <xsl:template match="notes">
@@ -31,7 +31,7 @@
     <entry>
       <link rel="alternate" href="{$baseIRI}{@src}" />
       <id>
-        <xsl:text>https://defanor.uberspace.net/</xsl:text>
+        <xsl:text>https://thunix.net/~defanor/</xsl:text>
         <xsl:value-of select="@src" />
       </id>
       <author>
