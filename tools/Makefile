@@ -65,3 +65,11 @@ notes/atom.xml: build/notes-by-modification-date.xml tools/xml-notes-limit.xsl t
 	xsltproc --param number 10 tools/xml-notes-limit.xsl \
 		build/notes-by-modification-date.xml | \
 		xsltproc -o $@ tools/xml-notes-to-atom.xsl -
+
+files/archive.tgz: *.html notes/*.html blog/*.txt pictures/*
+	find . \( -path './*.html' \
+		-o -path './blog/*.txt' \
+		-o -path './pictures/*' \
+		-o -path './files/*' ! -name 'archive.*' \
+		\) -print0 | \
+		tar -czf files/archive.tgz --null -T -
