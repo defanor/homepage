@@ -7,7 +7,7 @@ syscmd(ls -r blog/*.txt |
        sed -e "sS^blog/\(.*\)S0- \\1\tblog/\\1S")
 
 1phlog archive	blog
-hindex.xhtml	index.xhtml
+hindex.html	index.html
 hWWW	URL:https://www.thunix.net/~defanor/
 
 External Gopher links:
